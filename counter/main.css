@@ -1,0 +1,16 @@
+.clock {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .clockface {
+    margin: 0;
+    font-size: 75px;
+    font-weight: bold;
+  }
+  
+  .btn {
+    padding: 0 10px;
+    font-size: 25px;
+  }
