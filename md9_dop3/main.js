@@ -29,10 +29,6 @@ const timer = {
   id: null,
 };
 
-// let id = null;
-// let startTime = null;
-// let deltaTime = null;
-
 function updateClockface(elem, time) {
   elem.textContent = getFormattedTime(time);
 }
