@@ -88,17 +88,22 @@ function start() {
 }
 
 let timerArr = []
+let count = 0;
 
-function lapData () {    
+function lapData () {
+    count++;    
     timerArr.push(myTimer.lap())
-    creatLiElement(timerArr)
+    creatLiElement(timerArr, count)
 }
 
-function creatLiElement (arr) {   
+function creatLiElement (arr, count) {   
     const li = document.createElement('li');
     lapsUl.append(li)
-    li.textContent = arr.slice(-1)[0];
+    li.textContent = `Lap ${count}: ${arr.slice(-1)[0]}`
 }
+
+
+
 
 startBtn.addEventListener('click', start);
 

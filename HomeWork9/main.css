@@ -12,7 +12,7 @@ body {
 }
 
 .stopwatch {
-    width: 60%;
+    width: 450px;
     display: block;
     padding: 30px;
     text-align: center;
@@ -41,7 +41,7 @@ body {
 }
 
 .laps {
-    width: 60%;
+    width: 450px;
     height: 150px;    
     display: block;
     overflow:auto;
