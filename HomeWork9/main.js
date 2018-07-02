@@ -90,22 +90,32 @@ function start() {
 let timerArr = []
 let count = 0;
 
-function lapData () {
-    count++;    
+function lapData() {
+    count++;
     timerArr.push(myTimer.lap())
     creatLiElement(timerArr, count)
 }
 
-function creatLiElement (arr, count) {   
+function creatLiElement(arr, count) {
     const li = document.createElement('li');
     lapsUl.append(li)
     li.textContent = `Lap ${count}: ${arr.slice(-1)[0]}`
 }
 
+function reset() {
+    if (!myTimer.isActive) {
+        myTimer.reset();
+        if (lapsUl.firstChild) {
+            count = 0;
+            while (lapsUl.firstChild) {
+                lapsUl.removeChild(lapsUl.firstChild)
+            }
 
+        }
+    }
+}
 
 
 startBtn.addEventListener('click', start);
-
-resetBtn.addEventListener('click', myTimer.reset.bind(myTimer));
+resetBtn.addEventListener('click', reset);
 lapBtn.addEventListener('click', lapData)
