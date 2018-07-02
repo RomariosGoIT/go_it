@@ -2,9 +2,9 @@
 
 const clockFace = document.querySelector('.js-time');
 const startBtn = document.querySelector('.js-start');
-const lapBtn = document.querySelector('.js-take-lap')
+const lapBtn = document.querySelector('.js-take-lap');
 const resetBtn = document.querySelector('.js-reset');
-const lapsUl = document.querySelector('.js-laps')
+const lapsUl = document.querySelector('.js-laps');
 
 
 class CountTimer {
@@ -77,13 +77,15 @@ class CountTimer {
 
 const myTimer = new CountTimer(clockFace)
 
-function start({target}) {
+function start({
+    target
+}) {
     if (!myTimer.isActive) {
         setActive(target);
         myTimer.start()
         startBtn.textContent = 'Pause'
-    } else {  
-        setActive(target);  
+    } else {
+        setActive(target);
         myTimer.stop()
         startBtn.textContent = 'Start'
     }
@@ -92,8 +94,10 @@ function start({target}) {
 let timerArr = []
 let count = 0;
 
-function lapData({target}) {
-    if(myTimer.lap() === '00:00.0' || resetBtn.classList.contains('active')) {
+function lapData({
+    target
+}) {
+    if (myTimer.lap() === '00:00.0' || resetBtn.classList.contains('active')) {
         return
     }
     setActive(target);
@@ -108,7 +112,9 @@ function creatLiElement(arr, count) {
     li.textContent = `Lap ${count}: ${arr.slice(-1)[0]}`
 }
 
-function reset({target}) {
+function reset({
+    target
+}) {
     if (!myTimer.isActive) {
         setActive(target);
         myTimer.reset();
@@ -122,8 +128,8 @@ function reset({target}) {
     }
 }
 
-function setActive (target) {
-    if(target.classList.contains('active')) {
+function setActive(target) {
+    if (target.classList.contains('active')) {
         return;
     }
     startBtn.classList.remove('active')
