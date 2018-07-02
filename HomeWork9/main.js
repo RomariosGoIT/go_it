@@ -77,11 +77,13 @@ class CountTimer {
 
 const myTimer = new CountTimer(clockFace)
 
-function start() {
+function start({target}) {
     if (!myTimer.isActive) {
+        setActive(target);
         myTimer.start()
         startBtn.textContent = 'Pause'
-    } else {
+    } else {  
+        setActive(target);  
         myTimer.stop()
         startBtn.textContent = 'Start'
     }
@@ -90,7 +92,11 @@ function start() {
 let timerArr = []
 let count = 0;
 
-function lapData() {
+function lapData({target}) {
+    if(myTimer.lap() === '00:00.0' || resetBtn.classList.contains('active')) {
+        return
+    }
+    setActive(target);
     count++;
     timerArr.push(myTimer.lap())
     creatLiElement(timerArr, count)
@@ -102,8 +108,9 @@ function creatLiElement(arr, count) {
     li.textContent = `Lap ${count}: ${arr.slice(-1)[0]}`
 }
 
-function reset() {
+function reset({target}) {
     if (!myTimer.isActive) {
+        setActive(target);
         myTimer.reset();
         if (lapsUl.firstChild) {
             count = 0;
@@ -115,6 +122,17 @@ function reset() {
     }
 }
 
+function setActive (target) {
+    if(target.classList.contains('active')) {
+        return;
+    }
+    startBtn.classList.remove('active')
+    resetBtn.classList.remove('active')
+    lapBtn.classList.remove('active')
+
+    target.classList.add('active')
+
+}
 
 startBtn.addEventListener('click', start);
 resetBtn.addEventListener('click', reset);
